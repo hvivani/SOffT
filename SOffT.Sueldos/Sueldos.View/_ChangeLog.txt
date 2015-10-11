@@ -1,0 +1,489 @@
+/*  
+    _ChangeLog.cs
+
+    Author:
+    Hernan Vivani <hernan@vivani.com.ar> - http://hvivani.com.ar
+
+    Copyright © SOffT 2010 - http://www.sofft.com.ar
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
+
+20140829. v. 1.6.41
+Se agrega DDJJ_UOCRA
+20140107. v. 1.6.39
+Se corrigen métodos de acreditacion de sueldos por convenio.
+20131113. v. 1.6.35
+Se agrega reporte vacacionesCalculaDiasTodos
+20131030. v. 1.6.33
+Se agrega opción para acreditar por convenio. Tanto liquidaciones normales como anticipos.
+20131016. v. 1.6.31
+Se modifica formato de libro ley para imprimir cabecera junto con las hojas del libro.
+Se modifica formato de rúbricas para libro ley para imprimir solo foja.
+20130718. v. 1.6.29
+Se modifica reporte historico por campo para reflejar correctamente las altas y bajas. Esto afecta
+SP: 20130718_reporteEmpleadosPorCampoEmpleadoHistorico_ALTER
+20130717. v. 1.6.27
+En Liquidación, se agrega chkbox para "reliquidar todo"
+20130617. v. 1.6.25
+Se agrega reporte en excel netos por centro de costo.
+20130516. Se agrega exportación a excel de fondo de desempleo con formato para enviar a autoridades.
+20130416. Se generaliza para cualquier empresa el reporte de acreditacion bancaria.
+20130320. v.1.6.17
+Se agrega soporte para acreditar en banco Credicoop
+20130214. v.1.6.13
+Se crea opción para acreditar en diferentes bancos. Se agrega clase para manejo de banco galicia.
+Se crean/modifican sps:
+liquidacionesNetosPorLegajoPorBanco
+anticiposConsultarParaAcreditarPorBanco
+20121210. v.1.5.67
+Se crea tabla sindicatos para volcado de totales de conceptos de sindicatos y otros rubros, como 
+fdo de desempleo.
+Se crean stored: sindicatos_actualizar y sindicatos_consultarPorCodigo
+20121204. v.1.5.65 
+Se crea metodo acumuladosUltimoAnio(int codigo) en calculo para obtener totales de acumulados del
+ultimo año. No toma en cuenta mes actual.
+20121017. v.1.5.63
+Se modifica calculo de Hs Extras al 50 para que lea el limite diario de tablas --> horasextras
+Se arregla liquidación por defecto a 1ra. Quinc. cuando abre abm de liquidaciones.
+20121017. v.1.5.61
+Se cambia en calculo el metodo asistenciaEmpleadoEntreDias para que acepte int en vez de byte.
+Se modifica stored procedure asistenciaConsultarLegajoEntreDias para que acepte un negativo en diaDesde
+de manera de leer asistencia del mes anterior al actual.
+20121005. v.1.5.59
+Se corrige la generacion de archivo txt de sicoss que no ponia nombres de empleados.
+20120906. v.1.5.57
+Se modifica para exportación de Hs. Extras al 50% cuando se superan las 9 Hs de Lu a Vi.
+Se arregla botón de exportación a Excel.
+20120707. v.1.5.55
+Se agrega reporte de fichadas por reloj.
+20130111. Se modifican modulo de acreditación de liquidaciones y de anticipos para contemplar otros
+bancos ademas del provincia.
+Se crean nuevos stored procedures:
+- anticiposConsultarParaAcreditarPorBanco
+- liquidacionesNetosPorLegajoPorBanco
+Faltaría parametrizar los datos de la empresa en el banco: cuenta debito, codigo de empresa, etc.
+20120607. v.1.5.53
+Se modifica ABM de fichadas para grabar el reloj donde se origino la fichada.
+20120606. v.1.5.51
+Se agrega la exportación de fichadas entre fechas en el menu asistencia.
+20120427. v.1.5.49 
+Se agregan reportes de Ausencias Por Empleado y Ausencias Por Tipo.
+Se verifica grabación de Imágen en datos empresa.
+20120331. v.1.5.47
+Se arreglo problema con horarios. Al asignar siempre asignaba "diasemana" en vez del dia.
+20120216. v.1.5.45
+Se modifican metodos totalHaberesMesPorTipo, totalRetencionesMesPorTipo y totalAdicionalesMesPorTipo para que pasen
+el parametro idAplicacion a fin de descontar anticipos por RECIBO en cada quincena.
+20120118. v.1.5.43
+Se agregan metodos en calculo: totalAdicionalesMesPorTipo, totalRetencionesMesPorTipo para 
+el manejo anticipos con los recibos.
+20110831. v.1.5.41
+Se agregan funciones pra obtener el Dia(fecha) y el Mes(fecha)
+20110802. v.1.5.39
+Se agrega botón eliminar en frmRecibo para eliminar una liquidacion.
+Se modifica sp "liquidacionesEliminar" para que elimine acumulados al eliminar una liquidacion.
+Se agrega frmDebug para mostrar información de salida del compilador
+20110801. v.1.5.37
+Se agrega reporte Borrador por Convenio
+Se modifica sp reporteRelojConsultarFechas para que consulte desde histórico 
+si la fecha es muy vieja.
+20110601. v.1.5.35
+Se agrega metodo potencia(base, exponente) en calculo.
+20110518. v.1.5.34
+Se modifica por default formato de recibos A4 apaisado.
+
+-- Trabajando en capear ABM de Calculo
+20101229. v.1.5.32
+Se corrige error en reporte exportacion de anticipos.
+Se modifica EmpresaData para trabajar sin stored procedures.
+Se modifica TablaData para trabajar sin stored procedures.
+Modificamos estructura tabla empresas para id autonumerico.
+Se arma tablasData y tablasModelo. Se modifican metodos en clase Controles.
+Se capea en NovedadData y frmABMnovedades.
+Se capea ABM de Liquidaciones.
+20100922. v.1.5.21
+Se separan los reportes a un proyecto aparte y se llaman desde el codigo como una referencia.
+Idem Exportacion a Excel.
+20100705. v.1.5.11
+Se comienza a realizar pasaje de código a estructura de capas. Se separa en varios proyectos.
+SPs:
+	empresaConsultar
+	empresaEliminar
+	tablasConsultarDetalle
+	tablasConsultarContenidoyDetalle
+20100505. v.1.1.21 
+Se agrega la posibilidad de realiar backup de la DB en menú Herramientas.
+20091218. v.1.1.19 (cpereyra)
+Cambios:
+Creacion Clases:
+    - Vacacion
+    - Vacaciones
+Modificacion de Clases:
+    - Empleado
+        - Manejo de vacaciones usando la una coleccion
+        - Graba y carga la coleccion vacaciones
+Modificacion Fomularios:
+    - FrmVacacionesEmpleado
+        - Agregado un DatePicker para mostrar/modifcar la fecha.
+        - Modificado para operar con el objecto Vacacion
+        - Mantiene logica para asistencia, y agrega logica para crear modificar una Vacacion
+    - FrmDatosEmpleado
+        - Agregados los botones y logica para ABM vacaciones
+SP:
+    Agregados los sp:
+        - vacacionesEliminarLegajo
+        - vacacionesConsultarParaCargar
+        
+20091202. V.1.1.17
+Se actualiza liquidacionesDetalleParaCombo
+Se actualizan reportes de sueldos, anticipos para incluir nombre de empresa en cabecera.
+Se modifica control de selección de liquidaciones para permitir la selección de abiertas o cerradas.
+SPs:
+ReporteEmpleadosPorCampoEmpleadoHistorico
+ReporteEmpleadosPorCampoEmpleadoValorHistorico
+para que al intentar consultar un campo que no se registran históricos de liquidación informe que es un campo sin registro de históricos
+
+20091105. V.1.1.15 
+Se corrige (o intento) la generacion del reporte de acreditación que 
+en algunas situaciones sale en blanco.
+20091102. V.1.1.14
+Se agrega método en cálculo: totalConceptoImporteAniomes
+20090812. V 1.1.13
+Se graba en liquidaciones detalle la fecha de acreditación en bancos
+Se agregan decimales en el reporte de totales por conceptos liquidados.
+Se agregaron validaciones al grabar debe y haber de asientos para los casos en que el valor
+a grabar sea un NaN Not a Number o infinito. El problema se dió en el asiento de una liquidacion
+con liquidaciones adicionales de baja.
+cpereyra. Modifique el sp ReporteAsientodDeSueldosPorCentroDeCosto para que considere el conjunto de 
+liquidaciones pertenecientes a un anioMes y no solo a la primera seleccionada.
+
+20090704. V.1.1.12
+Se modifica generación de archivos a xls a generar archivos en .csv, es decir delimitados.
+Para compatibilidad con linux.
+Se crea reporte a excel de netos por area. 
+Nuevo sp: reporteNetoPorLegajoAreaConvenioAnioMes
+
+
+
+20090714. V.1.0.22
+Se modifica el abm de liquidaciones para que permita abrir nuevas liquidaciones de periodos cerrados.
+Se modifican sps:
+liquidacionesDetalleActualizar
+liquidacionesDetalleConsultarNueva
+
+20090702. V.1.0.21
+Se modifica que al cargar acumulados para sac, utilice indice 2 (tipo liq sac) al grabar tabla de acumulados.
+
+20090624. v.1.0.20
+Se modifican sps:
+empresaConsultar
+empresaActualizar
+Para impresión de anticipos se agrega campo de localidad.
+
+20090505 v.1.0.19:
+- Se Modifica sp: liquidacionesConsultarConceptoAnioMes
+- Se crea SP: liquidacionesConsultarTotalPosicionTipoMes
+- OJO, se modifica sp: liquidacionesConsultarConceptoAnioMesPosicion para que haga sum al total del concepto.
+- Se corrige sp tablasActualizar
+- Corrige modificaciones en el abm de tablas.
+- Cambia label SIJP a SiCOSS.
+
+20090210: 
+- Se agrega versionado: 1.0.17
+
+20081231: 
+- Estoy preparando la acreditacion bancaria por bapro de anticipos de sueldos
+para acreditar anticipos de aguinaldo.
+- Se agregó consulta de historicos en reporte de campos de empleados.
+Util para saber que tenía un empleado a determinada liquidación.
+
+20081230: En el recibo se modificó para que en fecha ingreso muestre la 
+ultima fecha de reingreso si es que existe.
+
+20081229: Se agregó al empleado el campo 88. Donde se lleva grabada en cada
+liquidacion la antiguedad en días.
+En el compilador, debe estar la sentencia que graba este dato en el legajo
+del empleado.
+De existir, se muestra en el recibo como Antiguedad computada: 4 meses y 2 días
+
+20081215: está terminado el abm de anticipos. El compilador puede levantar 
+desde ahí directamente.
+
+20081127: comenzamos con asiento de sueldos.
+Agregué comando.CommandTimeout = 240; en la ejecucion del sp Model.ejecutarDataSet 
+para poder emitir reporteRecibosSueldoDetalle
+OJO REVISAR. ESTA CONSULTA DEMORABA 140 segundos aprox.
+
+20081121: Terminé con la generación e importación en afip.
+Faltarían revisar algunas situaciones particulares solamente.
+Discriminación de vacaciones,sac, etc.
+
+20081113:
+*borrador
+*recibos
+*libro ley
+estan consulta: reporteReciboSueldoDetalle 
+
+20081110:
+Se agregó. cpereyra.
+Hay que agregar el boton cancelar a los dialogos que piden fechas para los reportes 
+y tipos de liquidacion.
+
+*acreditaciones
+*reporte acreditaciones
+estan consulta: liquidacionesNetoPorLegajo
+
+*reporte liquidaciones netos por legajo
+esta en consulta: reporteLiquidacionesNetoPorLegajo
+
+20081107: seAgregó submódulo para manejo de permisos
+
+20081103:
+Se agregó una coleccion de fechas de pago en el objeto 
+liquidacion, de esa manera se manejan todas las posibles fechas desde
+el mismo lugar.
+Esta coleccion reemplaza el campo fechaDePago.
+A través de esta colección, se pretende manejar todas las posibles fechas de pago
+predefinidas por liquidacion y hacer posible la eleccion desde la impresion
+de recibos, acreditaciones, etc.
+
+20081031:
+Se creó la tabla empleadosHistoricoLiquidacion con la sig estructura:
+3	idLiquidacion	numeric	9	0
+2	legajo	numeric	9	0
+2	codigo	numeric	9	0
+0	valor	varchar	50	0
+Para llevar los valores historicos de los campos de los empleados por cada
+liquidacion.
+El codigo debe corresponderse con el codigo existente en empleadosSueldos
+Se modifico el sp: reporteRecibosSueldoDetalle que es el que maneja los datos de los
+reportes de recibos de sueldo, borradores y libros ley
+para que verifique si estos campos tienen valor en la tabla empleadosHistoricoLiquidacion.
+De no ser así, levanta la información de empleadosSueldos normalmente.
+Los campos que se están grabando en dicha tabla son:
+centro costo
+basico
+categoria
+
+20081029: Para evitar el problema de que una liquidación pueda ser exportada para acreditar
+mas de una vez, caso comun en vacaciones que se sacan una vez por semana, creé
+la tabla liquidacionesEstados, que marca como acreditada una liquidación y no la vuelve 
+a procesar ante una nueva acreditación.
+20081007: El proceso de exportacion de netos con formato BAPRO esta listo. Falta ver tema de filtros
+por tipo de liquidacion. Ej. normal, vacaciones, etc.
+20081002: Estaria lista la exportacion al sijp. Hay que revisar las formulas de 
+los campos a exportar.
+20080930: Terminé con ganancias en la tabla de gerentes. En principio estaría dando bien.
+Para casos particulares habría que tocar los campos de acumulados retenidos y/o acumulados netos.
+20080923: Cambié la grabacion de novedades. No acumula. Pisa.
+20080729: Cambié campo indice en tabla novedades por idliquidacion. Eliminé campo aniomes en dicha tabla.
+20080728: Multiples Recibos:
+El campo idTipoLiquidacion es un campo mas de la tabla calculo. Trabaja como filtro.
+Por ejemplo:
+El concepto 101 sueldo basico existe en tabla Comercio. Está grabado con tipo liquidacion 'normal'.
+El concepto 250 aguinaldo existe en cada tabla de cada convenio. Está grabado con tipo liquidacion 'aguinaldo'.
+El concepto 400 jubilacion existe en cada tabla de cada convenio. Está grabado con tipo liquidacion 'todos los tipos'.
+
+Si la liquidacion está habilitada como normal:
+select conceptos where idtipoliquidacion='normal' or idtipoliquidacion='todos los tipos'
+
+Si la liquidacion está habilitada como aguinaldo:
+select conceptos where idtipoliquidacion='aguinaldo' or idtipoliquidacion='todos los tipos'
+
+Si la liquidacion está habilitada como normal + aguinaldo:
+select conceptos where idtipoliquidacion='normal' or idtipoliquidacion='aguinaldo' or idtipoliquidacion='todos los tipos'
+
+Si la liquidacion está habilitada como normal + aguinaldo CON RECIBO SEPARADO: 
+select conceptos where idtipoliquidacion='normal' or idtipoliquidacion='todos los tipos'
+select conceptos where idtipoliquidacion='aguinaldo' or idtipoliquidacion='todos los tipos'
+
+- Cambiar el idTipoLiquidacion 'todos los tipos' a un numero mayor por ej:100
+- Agregar a tipos de liquidacion 'Ticket'
+- Cambiar la asociación de las tablas. Cada una debe corresponderse a un convenio. Nada mas. Después veremos como manejar las cargas y 
+otras yerbas.
+- En el liquidador, revisar las llamadas al siguecalculo.
+- En Liquidacion, cambiar clave principal a idLiquidacion
+
+20080215: Terminé con el ABM de Periodos Trabajados. Habría que cargar todas las fechas de los empleados en 
+períodos trabajados.
+20080214: Estoy con el ABM de Periodos trabajados. Al finl lo puse en una solapa de DatosEmpleados.
+La coleccion está armada. Falta armar las acciones de los botones insertar y eliminar.
+20080212: Fin del primer paralelo en balcarce con resultados mas que aceptables.
+20080125: primera prueba con isntalacion de framework en balcarce. Maquina de Ana.
+Estoy haciendo el ABM de fichadas.
+20080124: Hice el CargarCamposEmpleados que puede utilizarse para cargar cualquier campo de cualqueir empleado.
+20080122: Estoy armando la tabla de aguinaldo. En especial para los egresos.
+Teoricamente habría que abrir explícitamente esta tabla si hay egresos !!! ????
+
+20080121:Agregué validaciones por fecha de baja. Sigo con la liquidacion de bajas.
+
+*****fbello: 
+**Excedencia. Se imprime en libro ley? 0.01?solo cabeceras, sin importes. Con detalle: LICENCIA POR EXCEDENCIA.
+**Orden de liquidacion alfajoreros jornalizados: jornales/antiguedad/hs.extras. jornales/hs.extras/antiguedad
+**Fecha de ingreso para antiguedad. Restar de la fecha original el tiempo no trabajado ?
+
+20080119: 
+estoy trabajando con la fecha de reingreso. y estados de baja para poder liquidar las bajas.
+
+20080118: 
+LOGRAMOS PRIMER PARALELO: PRIMERA QUINCENA de ALFAJOREROS
+
+20080116: 
+Carga masiva de novedades está lista.
+20080115:
+Listos los filtros en consulta de recibos.
+Listos los filtros en la pantalla de liquidacion.
+
+20080114: Se modificó por completo frmLiquidacion, ya se están aplicando los filtros al liquidar.
+Faltaría definir si para novedades y cargassociales se va a definir el campo extra idAplicacion para llevar los valores
+de la primera quincena.
+Hay que aplicar los nuevos filtros de consulta de liquidacion a las consultas de recibos.
+Hay que consultar los conceptos a liquidar según el idAplicacion.
+Estoy trabajando con el abm de liquidaciones.
+
+20080113:
+en Calculo, creé idTipoLiquidacion, idAplicacion.
+en Tablas, creé entradas de tabla 
+tiposDeLiquidacion 
+aplicacionLiquida
+Estoy trabajando en el ABM de Conceptos para agregar los combos de estos nuevos campos.
+
+
+20080111: Estoy analizando cargas sociales.
+Se crea una tabla ´SIJP´ que contendrá los valores que se calcularan y guardaran para exportar al SIJP
+3	AnioMes	char	10	0
+2	Indice	char	10	0
+2	legajo	char	10	0
+2	codigo	char	10	0
+0	valor	varchar	100	0
+Se corresponde con la tabla de tablas, 'sijp' que define los codigos y descripciones a utilizar en cada 
+campo.
+
+
+20080110:
+Cambio en el manejo de metodos estaticos en la clase calculo.
+Estoy con el análisis de apertura y cierre de liquidaciones.
+Se agrego tabla acumulados, para llevar los acumulados mensuales. También está definida en tabla 
+de tablas: acumulados con la descripcion de codigos.
+
+
+20080108: ABM de Liquidaciones. LISTO.
+REVISAR REFRESCO de GRILLA AL ELIMINAR O AGREGAR REGISTROS.
+Consulta Liquidacion. Falta Grabar. y asignar cada campo al modificarlo.
+
+20071010: Estoy armando el ABM de Liquidaciones, recien creé la clase liquidacion, 
+para trabajar con el frmDatosLiquidacion. 
+
+20071009: Agregué ABM de Anticipos, trabajado a traves del abm de novedades.
+
+20071008: Verificada la baja fisica al eliminar familiares. Anda Perfecto.
+Se agregó Licencias en frmDatosEmpleado.
+Se agregó validación por si existía liquidacion, antes de liquidar. Da opcion de eliminar la liquidacion.
+
+20071006: Listo ABM de Familiares. Revisar la baja fisica de registros.
+No heredo de nada. Estructura Propia.
+
+20071001: Eliminé CUIL de familiares. Heredé familiar de persona.
+Estructura para Familiares: Objeto Familiar, heredado de Persona.
+En Empleado se agrega la Coleccion Familiares.
+campo 005 Nacionalidad
+campo 007 Sexo
+campo 019 Legajo del Conyuge
+campo 202 cobra salario
+
+20070925: 
+Ver si no se debería heredar de persona. La clave es el campo CUIL, que ahora se
+lo dan a todas las personas
+Estructura para Familiares: Objeto Familiar, heredado de Empleado.
+En Empleado se agrega la Coleccion Familiares.
+!!!FALTA: 
+	campo nacionalidad en empleado.
+	campo legajo del conyuge en empleado.
+	campo cobra salario en empleado.
+	campo sexo en empleado.
+	
+	
+20070924:
+ABM de Tablas Listo. No soporta agregar tablas por ahora. Debería hacerse desde afuera.
+ABM de Conceptos Listo. Probarlo.
+20070901:
+Se agregó en tablas --> Calculo, en el campo contenido el codigo de convenio que liquida 
+la tabla de calculo, y su descripcion en el campo detalle. De manera de tener ésta informacion
+asociada al campo convenio en el empleado. En principio sirve para la carga de novedades, donde
+se debe cargar el indice correspondiente al convenio del empleado al que se le cargan novedades.
+Grabamos la tabla vacaciones y novedades para las vacaciones.
+Puse grilla para mostrar vacaciones tomadas en legajo.
+20070831: 
+Hice el ABM de Novedades completo. Está funcionando con consultas y todo. Habría que probarlo.
+Pueden faltar validaciones.
+En principio, habría que verificar que las novedades que se carguen coincidan
+con el tipo de liquidacion del empleado.
+---------
+Vacaciones: están listos los sps que calculan las vacaciones a tomar.
+
+20070822: 
+Todos los cambios de abajo están hechos. Está creado el frm para pedir año vacaciones.
+Faltaría: 
+Realizar los calculos de vacaciones a tomar.
+Grabar en tabla vacaciones.
+Grabar vacaciones a liquidar si se desea.
+Permitir modificar alguna vacacion ya cargada.
+
+Asistencia. 
+Para la unica novedad de asistencia que se necesita control de años es para vacaciones. es la novedad mas compleja.
+Por lo que se crea la tabla Vacaciones. 
+Para el resto de las licencias especiales con muchos días ej. LxM LIC S/SUELDO, etc, se puede obtener el total
+de días directamente agrupando y sumando los días de la tabla asistencia.
+
+Se diseña una nueva estructura en tabla vacaciones:
+legajo	fecha	codigo	dias tomados	año
+151		11/08/2007	45	7				2005
+151		15/09/2007	45	7				2005
+151		01/09/2007	45	14				2006
+
+se renombra tabla de codigos para los exclusivos de asistencia: asistencia
+se mantiene la tabla de codigos novedades para las novedades de liquidacion.
+
+se utiliza el campo contenido = 1 para indicar las novedades de asistencia que requieren la grabacion de éstos datos especiales.
+Por ahora, VAC y FCO VAC
+De esta manera, en el caso de vacaciones, por asistencia se cargarán los días reales tomados y por novedades los días a liquidar
+Si el mismo codigo existe en tabla novedades y tabla asistencia --> Utilizar la correspondencia para cargar novedades a liquidar.
+Ej. Vacaciones. Codigo 45 en asistencia y novedades
+
+20070730: Asistencia. Lista grabacion y consulta.
+20070727: Asistencia. Terminé con la selección de días. Estoy con la grabación en nueva estructura. 
+Verificar los codigos grabados. Ver la carga de los mismos cuando se carga la asistencia.
+Ver que pasa si se regraba una seleccion distinta.
+20070726: Listo el ABM de empleados. Solo falta impresión.
+20070725: Grabo empleados con todos sus campos. 
+20070724: Logré terminar con la funcionalidad de modificar, insertar y eliminar elementos de la grilla
+	"otros campos". ´Tuve algunos inconvenientes para trabajar la colección en memoria.
+	Dicha colección se refresca en la grilla.
+20070719:
+	Agregue grilla para "otros campos" en remuneraciones. La idea es que estos son campos que no
+	son obligatorios o comunes a todos los legajos y por lo tanto no son obligatorios para liquidar.
+	Se consultan a través de un sp que filtra codigos mayores a 99. Y lo trabajo con una coleccion
+	asociada al obj empleado.
+20070718:
+	Agregué campos basicos a consulta del empleado. Todos asociados al obj empleado.
+20070709:
+	Agregue campo desactivado a calculo, para los conceptos dados de baja.
+
+- La antiguedad calcularla considerando la fecha de liquidacion de tablas.liquidaciones
+
+Otros Requerimientos Funcionales:
+- Modulo de Anticipos de Sueldo.
+- Reporte de "Jornada Legal".
+- Rubrica de hojas para Libro Ley.
