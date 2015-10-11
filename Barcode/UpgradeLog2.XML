@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type='text/xsl' href='_UpgradeReport_Files/UpgradeReport.xslt'?><UpgradeLog>
+<Properties><Property Name="Solution" Value="DSBarCode">
+</Property><Property Name="Solution File" Value="R:\My Dropbox\programas\sofft\Barcode\DSBarCode.sln">
+</Property><Property Name="Date" Value="miércoles, 30 de junio de 2010">
+</Property><Property Name="Time" Value="10:50">
+</Property><Property Name="Log Number" Value="2">
+</Property></Properties><Event ErrorLevel="0" Project="DSBarCode" Source="DSBarCode.csproj" Description="The project file does not require conversion.">
+</Event><Event ErrorLevel="3" Project="DSBarCode" Source="DSBarCode.csproj" Description="No Conversion Required">
+</Event><Event ErrorLevel="0" Project="" Source="DSBarCode.sln" Description="Solution converted successfully">
+</Event><Event ErrorLevel="3" Project="" Source="DSBarCode.sln" Description="Converted">
+</Event></UpgradeLog>
