@@ -1,0 +1,27 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+# SharpDevelop 3.2.1.6466
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Eval3Lib", "Eval3Lib.vbproj", "{FE433B1A-3397-45FC-88C4-FB80ECAF5849}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Eval3Lib.Converted", "..\Eval3Lib.ConvertedToC#\Eval3Lib.Converted.csproj", "{25ACACC4-FA12-4A22-8B9A-3D1905E96F3C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FE433B1A-3397-45FC-88C4-FB80ECAF5849}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE433B1A-3397-45FC-88C4-FB80ECAF5849}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE433B1A-3397-45FC-88C4-FB80ECAF5849}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE433B1A-3397-45FC-88C4-FB80ECAF5849}.Release|Any CPU.Build.0 = Release|Any CPU
+		{25ACACC4-FA12-4A22-8B9A-3D1905E96F3C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{25ACACC4-FA12-4A22-8B9A-3D1905E96F3C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{25ACACC4-FA12-4A22-8B9A-3D1905E96F3C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{25ACACC4-FA12-4A22-8B9A-3D1905E96F3C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
