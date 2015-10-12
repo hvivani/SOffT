@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{3889B513-EDF0-4148-A876-70B1E7AED7E7}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Reloj.Data</RootNamespace>
+    <AssemblyName>Reloj.Data</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkSubset>
+    </TargetFrameworkSubset>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <WarningLevel>4</WarningLevel>
+    <DebugSymbols>true</DebugSymbols>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="log4net">
+      <HintPath>..\..\Sofft.Log4Net\log4net.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="FichadaData.cs" />
+    <Compile Include="GenericData.cs" />
+    <Compile Include="HuellaData.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Model\Model.csproj">
+      <Project>{65909236-0370-4436-B362-93292DEAC91C}</Project>
+      <Name>Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Sofft.Log4Net\Sofft.Log4Net.csproj">
+      <Project>{1ECEE18D-CB69-4107-8D83-0D54A550613B}</Project>
+      <Name>Sofft.Log4Net</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Sofft.Sueldos\Sueldos.Data\Sueldos.Data.csproj">
+      <Project>{702101C2-BD55-4244-936C-46393C15BDCB}</Project>
+      <Name>Sueldos.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Sofft.Sueldos\Sueldos.Entidades\Sueldos.Entidades.csproj">
+      <Project>{3C2C235B-6CB6-44F7-801C-2BBDBAB24261}</Project>
+      <Name>Sueldos.Entidades</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Reloj.Entidades\Reloj.Entidades.csproj">
+      <Project>{BFF339BF-1398-4C05-8530-213F64661DB9}</Project>
+      <Name>Reloj.Entidades</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

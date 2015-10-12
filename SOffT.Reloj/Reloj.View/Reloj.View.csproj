@@ -1,0 +1,144 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{FC5F77A7-F359-4166-9C0C-4CF7B2867A17}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Reloj.View</RootNamespace>
+    <AssemblyName>Reloj.View</AssemblyName>
+    <StartupObject>Reloj.View.Program</StartupObject>
+    <ApplicationIcon>clock.ico</ApplicationIcon>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>2.0</OldToolsVersion>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <WarningLevel>4</WarningLevel>
+    <DebugSymbols>true</DebugSymbols>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="Interop.WisSensorNLibLib">
+      <HintPath>..\libs\Interop.WisSensorNLibLib.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="frmFingerPrintUtils.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmFingerPrintUtils.Designer.cs">
+      <DependentUpon>frmFingerPrintUtils.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmReloj.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmReloj.designer.cs">
+      <DependentUpon>frmReloj.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="frmFingerPrintUtils.resx">
+      <DependentUpon>frmFingerPrintUtils.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmReloj.resx">
+      <DependentUpon>frmReloj.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="app.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="Settings.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="clock.ico" />
+    <None Include="Resources\mano01.jpg" />
+    <None Include="Resources\mano00.jpg" />
+    <None Include="Resources\mano011.jpg" />
+    <None Include="Resources\mano001.jpg" />
+    <Content Include="_ChangeLog.txt" />
+    <Content Include="_ToDo.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Model\Model.csproj">
+      <Project>{65909236-0370-4436-B362-93292DEAC91C}</Project>
+      <Name>Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Sofft.Sueldos\Sueldos.Entidades\Sueldos.Entidades.csproj">
+      <Project>{3C2C235B-6CB6-44F7-801C-2BBDBAB24261}</Project>
+      <Name>Sueldos.Entidades</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Sofft.Sueldos\Sueldos.Modelo\Sueldos.Modelo.csproj">
+      <Project>{D7488DE1-0BEF-437E-9FB8-9FCD5D48CACE}</Project>
+      <Name>Sueldos.Modelo</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Sofft.Utils\Sofft.Utils.csproj">
+      <Project>{9BBBC9AB-C1FD-4E74-91E4-F65B062C97FA}</Project>
+      <Name>Sofft.Utils</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Sofft.ViewComunes\Sofft.ViewComunes.csproj">
+      <Project>{D667B156-C44B-4C85-B064-6B587CD308E1}</Project>
+      <Name>Sofft.ViewComunes</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Reloj.Entidades\Reloj.Entidades.csproj">
+      <Project>{BFF339BF-1398-4C05-8530-213F64661DB9}</Project>
+      <Name>Reloj.Entidades</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Reloj.Modelo\Reloj.Negocio.csproj">
+      <Project>{44FC1CF8-AE02-4E58-A3F9-EEB79CCE27B7}</Project>
+      <Name>Reloj.Negocio</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
