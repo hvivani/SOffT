@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Modulos>
+  <nivel1 Nombre="Sueldos"
+          Archivo="Suledos"
+          idModulo="2"/>
+</Modulos>

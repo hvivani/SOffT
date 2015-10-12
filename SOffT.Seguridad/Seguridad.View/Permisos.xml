@@ -1,0 +1,98 @@
+﻿<!--<?xml version="1.0" encoding="utf-8" ?>-->
+<Sueldos Nombre="Sueldos">
+  <nivel1 Nombre="A.B.M. Empleados">
+    <nivel2 Nombre="Consultar"/>
+    <nivel2 Nombre="Nuevo"/>
+    <nivel2 Nombre="Modificar"/>
+    <nivel2 Nombre="Eliminar"/>
+    <nivel2 Nombre="Listado"/>
+  </nivel1>
+  <nivel1 Nombre="Reloj y Asistencia">
+    <nivel2 Nombre="ABM de Fichadas"/>
+    <nivel2 Nombre="Consulta de Fichadas"/>
+    <nivel2 Nombre="Captura de Fichadas"/>
+    <nivel2 Nombre="Actualizar Fichadas"/>
+    <nivel2 Nombre="Consulta de Ausencias"/>
+    <nivel2 Nombre="Asistencia"/>
+    <nivel2 Nombre="Impresión de Etiquetas"/>
+    <nivel2 Nombre="Cálculo de Horas Extras"/>
+    <nivel2 Nombre="Informe Horas Extras"/>
+    <nivel2 Nombre="Impresión de Asistencia"/>
+    <nivel2 Nombre="Gestión de Huellas Digitales"/>
+    <nivel2 Nombre="Ausencias por Empleado"/>
+    <nivel2 Nombre="Ausencias por Tipo"/>
+    <nivel2 Nombre="Exportar Fichadas"/>
+    <nivel2 Nombre="Consulta de Fichadas por Reloj"/>
+	<nivel2 Nombre="Llegadas Tarde"/>
+  </nivel1>
+  <nivel1 Nombre="Anticipios">
+    <nivel2 Nombre="ABM Anticipos"/>
+    <nivel2 Nombre="Emisión de Anticipos"/>
+    <nivel2 Nombre="Reporte por Tipo"/>
+    <nivel2 Nombre="Reporte por Legajo"/>
+    <nivel2 Nombre="Acreditaciones"/>
+  </nivel1>
+  <nivel1 Nombre="Liquidacion">
+    <nivel2 Nombre="ABM de Novedades"/>
+    <nivel2 Nombre="ABM de Liquidaciones">
+      <nivel3 Nombre="Consultar"/>
+      <nivel3 Nombre="Nuevo"/>
+      <nivel3 Nombre="Modificar"/>
+      <nivel3 Nombre="Eliminar"/>
+      <nivel3 Nombre="Listado"/>
+    </nivel2>
+    <nivel2 Nombre="ABM de Conceptos"/>
+    <nivel2 Nombre="Liquidación"/>
+    <nivel2 Nombre="Consulta de Recibos"/>
+    <nivel2 Nombre="Modificacion de Recibos"/>
+    <nivel2 Nombre="Carga Masiva Novedades"/>
+    <nivel2 Nombre="Carga Campos de Empleados"/>
+    <nivel2 Nombre="Carga de Acumulados"/>
+    <nivel2 Nombre="Acreditaciones"/>
+    <nivel2 Nombre="Reportes">
+      <nivel3 Nombre="Borrador de Liquidacion"/>
+      <nivel3 Nombre="Recibos de Sueldo"/>
+      <nivel3 Nombre="Libro Ley"/>
+      <nivel3 Nombre="Rubricas para Libro Ley"/>
+      <nivel3 Nombre="Netos por Legajo"/>
+      <nivel3 Nombre="Netos Por Forma de Pago"/>
+      <nivel3 Nombre="Netos Por Area"/>
+      <nivel3 Nombre="Listado de Conceptos"/>
+      <nivel3 Nombre="Concetos Liquidados"/>
+      <nivel3 Nombre="Borrador por Convenio"/>
+      <nivel3 Nombre="Netos por Centro de Costo"/>
+    </nivel2>
+    <nivel2 Nombre="Asientos de Sueldos">
+      <nivel3 Nombre="Formulas Asientos de Sueldos"/>
+      <nivel3 Nombre="Generar Asiento de Sueldos"/>
+      <nivel3 Nombre="Asiento de Sueldos"/>
+      <nivel3 Nombre="Asientos por Centro de Costo"/>
+    </nivel2>
+  </nivel1>
+  <nivel1 Nombre="Cargas Sociales">
+    <nivel2 Nombre="Formulas Cargas Sociales"/>
+    <nivel2 Nombre="Liquidar Cargas Sociales"/>
+    <nivel2 Nombre="Importar Datos SIJP"/>
+    <nivel2 Nombre="Formulas Excel Cargas"/>
+    <nivel2 Nombre="Excel Cargas"/>
+	  <nivel2 Nombre="Fondo de Desempleo (txt)"/>
+    <nivel2 Nombre="Fondo de Desempleo (XLS)"/>
+    <nivel2 Nombre="DDJJ UOCRA"/>
+  </nivel1>
+  <nivel1 Nombre="Informes">
+    <nivel2 Nombre="Jornada Legal"/>
+    <nivel2 Nombre="Empleados por Campo"/>
+    <nivel2 Nombre ="Acumulados por Tipo"/>
+    <nivel2 Nombre ="Sindicatos"/>
+    <nivel2 Nombre ="Vacaciones por Año"/>
+	<nivel2 Nombre ="Fechas de Jubilación"/>
+  </nivel1>
+  <nivel1 Nombre="Herramientas">
+    <nivel2 Nombre="ABM de Tablas"/>
+    <nivel2 Nombre="Documentos"/>
+    <nivel2 Nombre="Validador de CUIL"/>
+    <nivel2 Nombre="Datos Empresa"/>
+    <nivel2 Nombre="BackUp Base de Datos"/>
+    <nivel2 Nombre="Gestión Datos Remotos"/>
+  </nivel1>
+</Sueldos>
