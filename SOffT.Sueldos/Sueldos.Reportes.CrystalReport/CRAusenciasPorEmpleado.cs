@@ -2,6 +2,7 @@
     CRAusenciasPorEmpleado.cs
 
     Author:
+    Claudio Rodrigo Pereyra Diaz <claudiorodrigo@pereyradiaz.com.ar>
     Hernan Vivani <hernan@vivani.com.ar> - http://hvivani.com.ar
 
     Copyright © SOffT 2010 - http://www.sofft.com.ar
